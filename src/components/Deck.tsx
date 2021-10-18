@@ -50,12 +50,12 @@ class Deck extends React.Component<{}, IState> {
   shuffle = (array: PlayingCardObj[]) => {
     let currentIndex = array.length;
     let randomIndex;
-    // While there remain elements to shuffle.
+    // while there remain elements to shuffle
     while (currentIndex != 0) {
-      // Select a remaining element.
+      // select a remaining element
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      // Swap it with the current element.
+      // swap it with the current element
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
         array[currentIndex],
