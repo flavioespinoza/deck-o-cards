@@ -22,6 +22,12 @@ Clone repository:
 git clone https://github.com/flavioespinoza/deck-o-cards.git
 ```
 
+CD into directory:
+
+```shell
+cd deck-o-cards
+```
+
 Install dependencies:
 
 ```shell
