@@ -64,6 +64,7 @@ class Deck extends React.Component<{}, IState> {
       ];
     }
 
+    // reset indices for removeCard method
     for (let i = 0; i < array.length; i++) {
       array[i].index = i;
     }
