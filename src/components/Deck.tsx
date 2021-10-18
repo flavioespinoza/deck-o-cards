@@ -139,18 +139,25 @@ class Deck extends React.Component<{}, IState> {
   };
 
   calculateWinner = async () => {
-    this.setState({
-      selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
-      selectedTwo: { index: -1, value: 0, name: '', suite: '', color: '' },
-      count: 0,
-    });
-    if (this.state.selectedOne.value > this.state.selectedTwo.value) {
+    if (this.state.selectedOne.value === this.state.selectedTwo.value) {
+      this.setState({
+        selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
+        selectedTwo: { index: -1, value: 0, name: '', suite: '', color: '' },
+        count: 0,
+      });
+    } else if (this.state.selectedOne.value > this.state.selectedTwo.value) {
       this.setState((prevState) => ({
+        selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
+        selectedTwo: { index: -1, value: 0, name: '', suite: '', color: '' },
         scoreOne: prevState.scoreOne + 1,
+        count: 0,
       }));
-    } else if (this.state.selectedOne.value < this.state.selectedTwo.value) {
+    } else {
       this.setState((prevState) => ({
+        selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
+        selectedTwo: { index: -1, value: 0, name: '', suite: '', color: '' },
         scoreTwo: prevState.scoreTwo + 1,
+        count: 0,
       }));
     }
     await this.clearDisable();
