@@ -128,9 +128,9 @@ class Deck extends React.Component<{}, IState> {
       this.setState({
         selectedTwo: card,
         count: 2,
+        disable: true,
       });
     }
-    await wait(1500);
   };
 
   removeCard = async (card: PlayingCardObj) => {
@@ -164,19 +164,15 @@ class Deck extends React.Component<{}, IState> {
         count: 0,
       }));
     }
-    await wait(1000);
     await this.clearDisable();
   };
 
   selectCard = async (card: PlayingCardObj) => {
-    console.log(card);
     await this.removeCard(card);
     await this.setCard(card);
-    console.log(this.state.count);
+    // wait 4 seconds so players can view cards
+    await wait(4000);
     if (this.state.count === 2) {
-      this.setState({
-        disable: true,
-      })
       await this.calculateWinner();
     }
   };
@@ -221,6 +217,7 @@ class Deck extends React.Component<{}, IState> {
           <Box sx={{ textAlign: 'left' }}>
             <ol className='list'>
               <li>Click the SHUFFLE CARDS button to start a new game.</li>
+              <li>Aces are high Twos are low.</li>
               <li>Each player takes a turn selecting one card.</li>
               <li>
                 Whichever card has the highest value that player gets 1 point.
