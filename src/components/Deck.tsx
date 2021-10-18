@@ -101,7 +101,6 @@ class Deck extends React.Component<{}, IState> {
       scoreOne: 0,
       scoreTwo: 0,
       count: 0,
-      hideCards: true,
       disable: false,
     });
   };
@@ -224,6 +223,7 @@ class Deck extends React.Component<{}, IState> {
               </li>
               <li>If each player picks a similar card such as the K♥ and the K♣ then neither player gets a point.</li>
               <li>When all the cards are gone the player with the most points wins!</li>
+              <li>After you shuffle the cards you can click the SHOW CARDS button to view all the cards and verify they are shuffled sufficiently.</li>
             </ol>
           </Box>
         </Box>
