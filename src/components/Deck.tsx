@@ -1,5 +1,8 @@
 import React from 'react';
 import wait from 'wait';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import PlayingCard from './PlayingCard';
 
 interface PlayingCardObj {
@@ -22,6 +25,7 @@ interface IState {
   scoreTwo: number;
   count: number;
   hideCards: boolean;
+  disable: boolean;
 }
 
 class Deck extends React.Component<{}, IState> {
@@ -39,6 +43,7 @@ class Deck extends React.Component<{}, IState> {
       scoreTwo: 0,
       count: 0,
       hideCards: true,
+      disable: false,
     };
   }
 
@@ -93,9 +98,19 @@ class Deck extends React.Component<{}, IState> {
       cards: [],
       selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
       selectedTwo: { index: -1, value: 0, name: '', suite: '', color: '' },
+      scoreOne: 0,
+      scoreTwo: 0,
       count: 0,
+      hideCards: true,
+      disable: false,
     });
   };
+
+  clearDisable = async () => {
+    this.setState({
+      disable: false,
+    })
+  }
 
   shuffleCards = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -149,6 +164,8 @@ class Deck extends React.Component<{}, IState> {
         count: 0,
       }));
     }
+    await wait(1000);
+    await this.clearDisable();
   };
 
   selectCard = async (card: PlayingCardObj) => {
@@ -157,15 +174,31 @@ class Deck extends React.Component<{}, IState> {
     await this.setCard(card);
     console.log(this.state.count);
     if (this.state.count === 2) {
+      this.setState({
+        disable: true,
+      })
       await this.calculateWinner();
     }
   };
 
+  showCards = () => {
+    this.setState({
+      hideCards: false,
+    });
+  };
+
+  hideCards = () => {
+    this.setState({
+      hideCards: true,
+    });
+  };
+
   render() {
     const myCards = this.state.cards.map((obj, i) => (
-      <div
+      <Button
         key={i}
         style={{ color: obj.color }}
+        disabled={this.state.disable}
         onClick={() => this.selectCard(obj)}
       >
         <PlayingCard
@@ -177,13 +210,31 @@ class Deck extends React.Component<{}, IState> {
             hide: this.state.hideCards,
           }}
         />
-      </div>
+      </Button>
     ));
     return (
-      <div>
-        <div>
+      <Box sx={{ padding: 12 }}>
+        <Box sx={{ display: 'block', textAlign: 'left', margin: 2 }}>
+          <Typography variant='h3' color='black' gutterBottom>
+            The game is WAR!
+          </Typography>
+          <Box sx={{ textAlign: 'left' }}>
+            <ol className='list'>
+              <li>Click the SHUFFLE CARDS button to start a new game.</li>
+              <li>Each player takes a turn selecting one card.</li>
+              <li>
+                Whichever card has the highest value that player gets 1 point.
+              </li>
+              <li>If each player picks a similar card such as the K♥ and the K♣ then neither player gets a point.</li>
+              <li>When all the cards are gone the player with the most points wins!</li>
+            </ol>
+          </Box>
+        </Box>
+        <Box sx={{ display: 'flex', paddingTop: 4 }}>
           <div>
-            <h3>Player A: {this.state.scoreOne}</h3>
+            <Typography variant='h5' color='gray' gutterBottom>
+              Player A: {this.state.scoreOne}
+            </Typography>
             <PlayingCard
               {...{
                 value: this.state.selectedOne.value,
@@ -195,7 +246,9 @@ class Deck extends React.Component<{}, IState> {
             />
           </div>
           <div>
-            <h3>Player B: {this.state.scoreTwo}</h3>
+            <Typography variant='h5' color='gray' gutterBottom>
+              Player B: {this.state.scoreTwo}
+            </Typography>
             <PlayingCard
               {...{
                 value: this.state.selectedTwo.value,
@@ -206,12 +259,23 @@ class Deck extends React.Component<{}, IState> {
               }}
             />
           </div>
-        </div>
-        <form onSubmit={this.shuffleCards}>
-          <button type='submit'>{'Shuffle'}</button>
-        </form>
-        {myCards}
-      </div>
+        </Box>
+        <Box sx={{ display: 'flex', margin: 2 }}>
+          <form onSubmit={this.shuffleCards}>
+            <Button type='submit'>{'Shuffle Cards'}</Button>
+          </form>
+          {this.state.cards.length ? (
+            <div>
+              {this.state.hideCards ? (
+                <Button onClick={this.showCards}>{'Show Cards'}</Button>
+              ) : (
+                <Button onClick={this.hideCards}>{'Hide Cards'}</Button>
+              )}
+            </div>
+          ) : null}
+        </Box>
+        <Box>{myCards}</Box>
+      </Box>
     );
   }
 }
