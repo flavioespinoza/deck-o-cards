@@ -44,10 +44,10 @@ The app should be running on http://localhost:3000
 
 ## The game is WAR
 
-1. Click the SHUFFLE CARDS button to start a new game.
+1. Click the `SHUFFLE CARDS` button to start a new game.
 1. Aces are high Twos are low.
 1. Each player takes a turn selecting one card.
 1. Whichever card has the highest value that player gets 1 point.
 1. If each player picks a similar card such as the K♥ and the K♣ then neither player gets a point.
 1. When all the cards are gone the player with the most points wins.
-1. After you shuffle the cards you can click the SHOW CARDS button to view all the cards and verify they are shuffled sufficiently.
+1. After you shuffle the cards you can click the `SHOW CARDS` button to view all the cards and verify they are shuffled sufficiently.
