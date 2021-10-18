@@ -146,14 +146,14 @@ class Deck extends React.Component<{}, IState> {
         count: 0,
       });
     } else if (this.state.selectedOne.value > this.state.selectedTwo.value) {
-      this.setState((prevState, props) => ({
+      this.setState((prevState) => ({
         selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
         selectedTwo: { index: -1, value: 0, name: '', suite: '', color: '' },
         scoreOne: prevState.scoreOne + 1,
         count: 0,
       }));
     } else {
-      this.setState((prevState, props) => ({
+      this.setState((prevState) => ({
         selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
         selectedTwo: { index: -1, value: 0, name: '', suite: '', color: '' },
         scoreTwo: prevState.scoreTwo + 1,
