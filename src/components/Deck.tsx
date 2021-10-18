@@ -85,6 +85,7 @@ class Deck extends React.Component<{}, IState> {
         });
       }
     }
+    // shuffle cards prior to setting state of cards
     this.shuffle(temp);
     this.setState({
       cards: [...temp],
@@ -102,12 +103,6 @@ class Deck extends React.Component<{}, IState> {
       disable: false,
     });
   };
-
-  clearDisable = async () => {
-    this.setState({
-      disable: false,
-    })
-  }
 
   shuffleCards = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -137,6 +132,12 @@ class Deck extends React.Component<{}, IState> {
       }),
     });
   };
+  
+  clearDisable = async () => {
+    this.setState({
+      disable: false,
+    })
+  }
 
   calculateWinner = async () => {
     if (this.state.selectedOne.value === this.state.selectedTwo.value) {
