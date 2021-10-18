@@ -142,7 +142,6 @@ class Deck extends React.Component<{}, IState> {
   };
 
   calculateWinner = async () => {
-    console.log('calculateWinner');
     if (this.state.selectedOne.value === this.state.selectedTwo.value) {
       this.setState({
         selectedOne: { index: -1, value: 0, name: '', suite: '', color: '' },
@@ -170,7 +169,8 @@ class Deck extends React.Component<{}, IState> {
   selectCard = async (card: PlayingCardObj) => {
     await this.removeCard(card);
     await this.setCard(card);
-    // wait 4 seconds so players can view cards
+    // wait 4 seconds so players can view cards 
+    // card selection is disabled during this 4 seconds
     await wait(4000);
     if (this.state.count === 2) {
       await this.calculateWinner();
