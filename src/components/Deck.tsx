@@ -213,7 +213,7 @@ class Deck extends React.Component<{}, IState> {
             The game is WAR!
           </Typography>
           <Box sx={{ textAlign: 'left' }}>
-            <ol className='list'>
+            <ol>
               <li>Click the SHUFFLE CARDS button to start a new game.</li>
               <li>Aces are high Twos are low.</li>
               <li>Each player takes a turn selecting one card.</li>
