@@ -1,11 +1,5 @@
 # deck-o-cards
 
-## Homework
-
-The purpose of this assignment is to figure a few things: your architecture and coding style, interpretation of requirements, and your creativity. We expect that this homework assignment will become a major conversation for our in-person interview.
-
-Please create a javascript class that represents a deck of cards. Please include any methods or properties on the class that you think might be applicable to using a deck of cards. Create the UI for one game that will use this deck of cards. This game can be any game you like, even a game that you created just for this assignment
-
 ## Requirements
 
 1. Create class that represents a deck of cards
